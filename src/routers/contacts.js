@@ -7,7 +7,7 @@ import {
     getContactByIdController, 
     patchContactController
 } from "../controllers/contacts";
-import { ctrlWrapper } from "../utils/ctrlWrapper";
+import { ctrlWrapper } from "../utils/ctrlWrapper.js";
 
 const router = Router();
 
