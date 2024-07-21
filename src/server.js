@@ -6,7 +6,7 @@ import pino from 'pino-http';
 
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
-import contactsRouter from './routers/contacts.js'
+import Routers from './routers/index.js'
 
 const PORT =  Number(process.env.PORT) ? Number(process.env.PORT) : 3000;
 
@@ -26,7 +26,7 @@ export const setupServer = () => {
     );
 
 
-    app.use(contactsRouter);
+    app.use(Routers);
 
     app.use('*', notFoundHandler);
 
