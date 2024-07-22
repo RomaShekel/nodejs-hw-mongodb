@@ -53,8 +53,7 @@ export const loginUser = async (payload) => {
 }
 
 export const refreshUserSession = async (sessionId, refreshToken) => {
-    const session = await SessionsCollection.findOne({_id:sessionId, ...refreshToken});
-
+    const session = await SessionsCollection.findOne({_id:sessionId, refreshToken: refreshToken});
     if(!session) throw createHttpError(401, 'Not found a session');
 
     const isSessionTokenExpire = new Date() > new Date(session.refreshTokenValidUntil);
@@ -63,7 +62,7 @@ export const refreshUserSession = async (sessionId, refreshToken) => {
 
     const newSession = createSession();
 
-    await SessionsCollection.deleteOne({_id:sessionId, refreshToken});
+    await SessionsCollection.deleteOne({_id:sessionId, refreshToken: refreshToken});
 
     return await SessionsCollection.create({
         userId: session.userId,
@@ -72,5 +71,5 @@ export const refreshUserSession = async (sessionId, refreshToken) => {
 }
 
 export const logout = async (sessionId) => {
-    await SessionsCollection.deleteOne({_id:sessionId})
+    await SessionsCollection.findByIdAndDelete(sessionId)
 }

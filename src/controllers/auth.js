@@ -8,12 +8,11 @@ import {
 
 const setupSession = (res, session) => {
     res.cookie('refreshToken', session.refreshToken, {
-        httpOnly: true,
-        expires: new Date(Date.now() + ONE_DAY),
-    });
-
-    res.cookie('sessionId', session._id, {
-        httpOnly: true,
+        httpOnly:true,
+        expire: new Date(Date.now() + FIFTEEN_MINUTES),
+    }),
+    res.cookie('sessionId', session._id.toString(), {
+        httpOnly:true,
         expire: new Date(Date.now() + ONE_DAY),
     });
 }
@@ -41,11 +40,10 @@ export const loginUserController = async (req, res) => {
 }
 
 export const refreshUserSessionController = async (req, res) => {
-    const session = await refreshUserSession({
-        sessionId: req.cookies.sessionId,
-        refreshToken: req.cookies.refreshToken,
-    })
+    const sessionId = req.cookies.sessionId;
+    const refreshToken = req.cookies.refreshToken
 
+    const session = await refreshUserSession(sessionId, refreshToken)
     setupSession(res, session);
 
     res.json({
@@ -56,7 +54,6 @@ export const refreshUserSessionController = async (req, res) => {
 }
 
 export const logoutController = async (req, res) => {
-    console.log(req.cookies.sessionId)
     if(req.cookies.sessionId){
         await logout(req.cookies.sessionId)
     }
