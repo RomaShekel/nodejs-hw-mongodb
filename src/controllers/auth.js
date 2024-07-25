@@ -1,9 +1,12 @@
+import createHttpError from "http-errors";
 import { FIFTEEN_MINUTES, ONE_DAY } from "../constants/index.js";
 import { 
     registerUser, 
     loginUser,
     refreshUserSession,
     logout,
+    requestResetToken,
+    resetPassword,
 } from "../services/auth.js"
 
 const setupSession = (res, session) => {
@@ -61,4 +64,23 @@ export const logoutController = async (req, res) => {
     res.clearCookie('sessionId');
     res.clearCookie('refreshToken');
     res.status(204).send();
+}
+
+export const requestResetTokenController = async (req, res) => {
+    await requestResetToken(req.body.email);
+
+    res.json({
+        status:200,
+        message: "Reset password email has been successfully sent.",
+        data: {},
+    })
+}
+
+export const resetPasswordController = async (req, res) => {
+    await resetPassword(req.body);
+
+    res.json({
+        status:200,
+        message:'Password has been successfully reset.'
+    })
 }
