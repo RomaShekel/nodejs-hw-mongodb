@@ -42,7 +42,7 @@ router.post(
     ctrlWrapper(requestResetTokenController))
 
 router.post(
-    '/reset-password',
+    '/reset-pwd',
     validateBody(resetPasswordSchema),
     ctrlWrapper(resetPasswordController))
 

@@ -1,0 +1,80 @@
+# ../swagger/paths/contacts/post.yaml
+tags:
+  - Contact
+summary: Patch a contact
+operationId: patchContact
+description: 'Patch contact with payload'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: '65ca67e7ae7f10c88b598384'
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - name
+          - phoneNumber
+          - contactType
+          - userId
+        properties:
+          name: 
+            description: "Contact's name"
+            type: string
+            example: Maria Janes
+          phoneNumber:
+            description: "Contact's phone"
+            type: number 
+            example: " +380123456789"
+          contactType: 
+            description: "Contact type"
+            type: string
+            enum: ['home', 'work', 'personal']
+            default: 'personal'
+          userId:
+            description: "Contact's user id"
+            type: string
+            example: 65e4decdd286b30065d54af9
+          email: 
+            description: "Contact's user email"
+            type: string
+            example: mariajanes@gmail.com 
+          isFavourite: 
+            description: "Is contact user's favourite"
+            type: boolean
+            default: false
+          photo:
+            description: "Contact's user photo"
+            type: string
+            example: <https://res.cloudinary.com/uqwgdu/image/upload/image.png>
+responses: 
+  '200':
+    description: Patched a contact
+    content: 
+      application/json:
+        schema: 
+          type: object
+          required: 
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully patched a contact!
+            data:
+              type: object
+              $ref: '../../../components/schemas/contact.yaml'
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'

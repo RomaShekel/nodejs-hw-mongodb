@@ -1,0 +1,7 @@
+# swagger/components/responses/202.yaml
+description: Successfully deleted a contact
+content:
+  application/json:
+    schema:
+      type: integer
+      example: 204
