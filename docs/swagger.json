@@ -173,7 +173,7 @@
       },
       "post": {
         "tags": [
-          "Contact"
+          "Contacts"
         ],
         "summary": "Create a contact",
         "operationId": "createContact",
@@ -190,9 +190,7 @@
                 "type": "object",
                 "required": [
                   "name",
-                  "phoneNumber",
-                  "contactType",
-                  "userId"
+                  "phoneNumber"
                 ],
                 "properties": {
                   "name": {
@@ -215,11 +213,6 @@
                     ],
                     "default": "personal"
                   },
-                  "userId": {
-                    "description": "Contact's user id",
-                    "type": "string",
-                    "example": "65e4decdd286b30065d54af9"
-                  },
                   "email": {
                     "description": "Contact's user email",
                     "type": "string",
@@ -233,6 +226,7 @@
                   "photo": {
                     "description": "Contact's user photo",
                     "type": "string",
+                    "format": "binary",
                     "example": "<https://res.cloudinary.com/uqwgdu/image/upload/image.png>"
                   }
                 }
@@ -343,7 +337,7 @@
       },
       "delete": {
         "tags": [
-          "Contact"
+          "Contacts"
         ],
         "summary": "Delete a contact with id",
         "operationId": "deleteContact",
@@ -378,7 +372,7 @@
       },
       "patch": {
         "tags": [
-          "Contact"
+          "Contacts"
         ],
         "summary": "Patch a contact",
         "operationId": "patchContact",
@@ -404,12 +398,6 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "phoneNumber",
-                  "contactType",
-                  "userId"
-                ],
                 "properties": {
                   "name": {
                     "description": "Contact's name",
@@ -431,11 +419,6 @@
                     ],
                     "default": "personal"
                   },
-                  "userId": {
-                    "description": "Contact's user id",
-                    "type": "string",
-                    "example": "65e4decdd286b30065d54af9"
-                  },
                   "email": {
                     "description": "Contact's user email",
                     "type": "string",
@@ -449,6 +432,7 @@
                   "photo": {
                     "description": "Contact's user photo",
                     "type": "string",
+                    "format": "binary",
                     "example": "<https://res.cloudinary.com/uqwgdu/image/upload/image.png>"
                   }
                 }

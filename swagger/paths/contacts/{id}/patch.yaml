@@ -1,6 +1,6 @@
 # ../swagger/paths/contacts/post.yaml
 tags:
-  - Contact
+  - Contacts
 summary: Patch a contact
 operationId: patchContact
 description: 'Patch contact with payload'
@@ -18,11 +18,6 @@ requestBody:
     multipart/form-data:
       schema:
         type: object
-        required:
-          - name
-          - phoneNumber
-          - contactType
-          - userId
         properties:
           name: 
             description: "Contact's name"
@@ -37,10 +32,6 @@ requestBody:
             type: string
             enum: ['home', 'work', 'personal']
             default: 'personal'
-          userId:
-            description: "Contact's user id"
-            type: string
-            example: 65e4decdd286b30065d54af9
           email: 
             description: "Contact's user email"
             type: string
@@ -52,6 +43,7 @@ requestBody:
           photo:
             description: "Contact's user photo"
             type: string
+            format: binary
             example: <https://res.cloudinary.com/uqwgdu/image/upload/image.png>
 responses: 
   '200':

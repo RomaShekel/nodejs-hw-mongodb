@@ -1,6 +1,6 @@
 
 tags:
-  - Contact
+  - Contacts
 summary: Delete a contact with id
 operationId: deleteContact
 description: 'Delete a contact with id'
