@@ -53,7 +53,7 @@ export const createContactController = async (req, res) => {
     const userId = req.user._id;
     const photo = req.file;
     console.log(photo)
-    let photoUrl;
+    let photoUrl = null;
 
     if(photo) {
         if(env('ENABLE_CLOUDINARY') === 'true')
@@ -95,7 +95,7 @@ export const patchContactController = async (req, res, next) => {
     const { contactId } = req.params;
     const userId = req.user._id;
     const photo = req.file;
-    let photoUrl;
+    let photoUrl = null;
 
     if(photo) {
         if(env('ENABLE_CLOUDINARY') === 'true')
